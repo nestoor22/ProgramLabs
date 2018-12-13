@@ -2,8 +2,8 @@
 
 int main() {
 
-    FILE *myfile = fopen("furx.txt", "r");
-    int i, indmin, indmax;
+    FILE *myfile = fopen("D:\\university\\labs\\programmingl\\lab9\\cmake-build-debug\\furx.txt", "r");
+    int i, indmin, indmax,diff;
     float min, max;
     float A[200];
     for (i = 0; i < 200; i++) {
@@ -19,7 +19,9 @@ int main() {
     }
     min = A[indmin];
     max = A[indmax];
+    diff = indmax - indmin;
     printf("min index = %i\nmin value = %f\n"
-           "max index = %i\nmax value = %f\n",indmin, min, indmax, max);
+           "max index = %i\nmax value = %f\n"
+           "indmax - indmin = %i\n",indmin, min, indmax, max, diff);
     return 0;
 }
