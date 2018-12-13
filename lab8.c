@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 
-
 int main() {
 
-    double T = 0.01;
+    double T = 0.04;
     int N = 200;
     double x, y;
     double h = T / N,aak,bbk;
@@ -25,33 +24,33 @@ int main() {
     furx = fopen("furx.txt","wt");
     x = 0;
 
-    while (x <= 0.01) {
-        if (x <= 0.004) {
+    while (x <= 0.04) {
+        if (x <= T/3) {
+            y = 5*x/(T/3);
+            fprintf(myfileX, "%.5f\n", x);
+            fprintf(myfileY, "%.5f\n", y);
+            fprintf(myfile, "%.6f %.6f \n", x, y);
+        }
+        if ((x > T/3) && (x <= T/2)) {
             y = 5;
             fprintf(myfileX, "%.5f\n", x);
             fprintf(myfileY, "%.5f\n", y);
             fprintf(myfile, "%.6f %.6f \n", x, y);
         }
-        if ((x > 0.004) && (x <= 0.005)) {
-            y = 5 - 5 *(x-0.004)/0.001;
+        if ((x > T/2) && (x <= 7*T/8)) {
+            y = 5 - 11*(x-0.02)/0.015;
             fprintf(myfileX, "%.5f\n", x);
             fprintf(myfileY, "%.5f\n", y);
             fprintf(myfile, "%.6f %.6f \n", x, y);
         }
-        if ((x >= 0.005) && (x <= 0.0075)) {
-            y = 5 * (x-0.005) / 0.0025;
-            fprintf(myfileX, "%.5f\n", x);
-            fprintf(myfileY, "%.5f\n", y);
-            fprintf(myfile, "%.6f %.6f \n", x, y);
-        }
-        if ((x>0.0075)&&(x<=0.01)){
-            y = 5 - 5*(x-0.0075)/0.0025;
+        if ((x>7*T/8)&&(x<=T)){
+            y = 6*(x-0.035)/0.005 - 6;
             fprintf(myfileX, "%.5f\n", x);
             fprintf(myfileY, "%.5f\n", y);
             fprintf(myfile, "%.6f %.6f \n", x, y);
 
         }
-        x += 0.01 / N;
+        x += 0.04 / N;
     }
     fclose(myfile);fclose(myfileX);fclose(myfileY);
     myfileX = fopen("myfileX.txt", "r");
@@ -96,7 +95,7 @@ int main() {
     fclose(bkk);fclose(akk);
 
     int k2;
-    for(Tp = 0;Tp<=0.01;Tp += 0.01/200){
+    for(Tp = 0;Tp<=0.04;Tp += 0.04/200){
         furier = a0/2;
         for(k2=1;k2<=10;k2++){
             furier += AK[k2]*cos(k2*w*Tp)+BK[k2]*sin(k2*w*Tp);
